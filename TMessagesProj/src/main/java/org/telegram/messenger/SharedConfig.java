@@ -280,6 +280,7 @@ public class SharedConfig {
     public static boolean raiseToListen = true;
     public static boolean nextMediaTap = true;
     public static boolean recordViaSco = false;
+    public static boolean switchToMysh = true;
     public static boolean customTabs = true;
     public static boolean directShare = true;
     public static boolean inappCamera = true;
@@ -581,6 +582,7 @@ public class SharedConfig {
             raiseToSpeak = preferences.getBoolean("raise_to_speak", false);
             nextMediaTap = preferences.getBoolean("next_media_on_tap", true);
             recordViaSco = preferences.getBoolean("record_via_sco", false);
+            switchToMysh = preferences.getBoolean("switch_to_mysh", false);
             customTabs = preferences.getBoolean("custom_tabs", true);
             directShare = preferences.getBoolean("direct_share", true);
             shuffleMusic = preferences.getBoolean("shuffleMusic", false);
@@ -1195,6 +1197,13 @@ public class SharedConfig {
         return raiseToListen && (!speak || raiseToSpeak);
     }
 
+    public static void toggleSwitchToMysh() {
+        switchToMysh = !switchToMysh;
+        SharedPreferences preferences = MessagesController.getGlobalMainSettings();
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putBoolean("switch_to_mysh", switchToMysh);
+        editor.apply();
+    }
     public static void toggleCustomTabs() {
         customTabs = !customTabs;
         SharedPreferences preferences = MessagesController.getGlobalMainSettings();
